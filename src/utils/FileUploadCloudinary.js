@@ -10,7 +10,7 @@ cloudinary.config({
 const uploadOnCloudinary = async (localFilePath) => {
     try {
         if(!localFilePath) {
-            throw new Error("File path is required");
+            return null;
         }
 
         // upload file on cloudinary
@@ -19,7 +19,8 @@ const uploadOnCloudinary = async (localFilePath) => {
         });
 
         //file has been uploaded on cloudinary
-        console.log("File uploaded on cloudinary", response.url);
+        // console.log("File uploaded on cloudinary", response.url);
+        fs.unlinkSync(localFilePath); // remove file from local storage
 
         return response;
     } catch (error) {
