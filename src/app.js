@@ -18,4 +18,11 @@ app.use(express.static('public')); // our app now serves static files from the p
 
 app.use(cookieParser()); // our app now uses cookie-parser to parse cookies in the request headers
 
+// import routes
+import userRouter from './routes/user.routes.js';
+
+// routes declaration
+app.use('/api/v1/users', userRouter); // why app.use and not app.get? Because we are using a router object that has multiple routes (Middleware)
+// http://localhost:5000/api/v1/users/register
+
 export {app};
